@@ -16,7 +16,7 @@ int main() {
 	c_pid = fork();
 	if(c_pid == 0){
 		std::cout << "Hello " << std::endl;
-		return 1;
+		return 0;
 	}
 	else {
 		waitpid(0, &c_status, 0);
