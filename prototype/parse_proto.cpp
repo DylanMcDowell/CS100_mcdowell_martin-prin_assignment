@@ -13,7 +13,6 @@ int main() {
 	string parseholder = "";
 
 	for(i = 0; i < input.length(); i++){
-		cout << "\"" << input.at(i) << "\"" << flush;
 		if(input.at(i) == ' '){
 			inputs.push_back(parseholder);
 			parseholder = "";
