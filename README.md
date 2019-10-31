@@ -13,30 +13,32 @@ To proceed, we will use a parse tree by associating a priority to each connector
 
 <img src="images/Screen_Shot_2019-10-28_at_17.15.23.png" with="1000">
 
-## Class Descritption
+## Class Description
 
 **CommandBase**
 
-
+The CommandBase class will serve as the interface for the composite. It has one pure virtual function, execute(), and no data members. Each class, therefore, is distinguishable by it's implementation of the execute() function.
 
 **Command**
 
-This is the class that represents the command. After parsing, each command will be represented as an instance of this class. It contains the command itself, the arguments and parameters.
+This is the class that represents the command. After parsing, each command will be represented as an instance of this class. It contains the command itself, the arguments and parameters. When execute is called on it, it uses execvp() to perform the command, and return a value dependent on the command's success; -1 for failure, 0, for success, and 1 for exit.
 
 **Connector**
 
-This is the class for the connector. This class is basically a class that will recognize each connector and associate it with its corresponding class. The differents classes for connectors are the following:
+This is the class for the connector. This class will recognize each connector and associate it with its corresponding class. The class, and it's subclasses, has a vector of CommandBase pointers(limited to two pointers), and the virtual execute() function. This class serves as a base class for the various types of connectors required. The differents classes for connectors are the following:
 
-* **SemiColon**
-* **Ampersand**
-* **OrBars**
+* **SemiColon**: The SemiColon class overrides the execute() function by running the leftmost CommandBase's execute(), then the leftmost's.
+* **Ampersand**: The Ampersand class overrides the execute() function by running the rightmost's execute() only if the leftmost one's succeeds.
+* **OrBars**: The OrBars class overrides the execute() function by running the rightmost's execute() only if the leftmost one's fails.
 
-Those classes would attribute each connector its priority and its type.
+Each of these functions' execute() returns a zero if ether it's left or right CommandBase succeeds.
 
 **CommandTree**
 
-This class is the base for the parsing tree. After the parsing, we will use this class to create the tree. This class will create each nodes and leaves on our parsing tree.
+This class is the base for the parsing tree. After the parsing, we will use this class to create the tree. This class will create each node and leave on our parsing tree. It will also prioritize semicolons to be higher on the tree than other CommandBases
 
 **CommandParse**
 
-This class is basically the class that will parse the command in order to create a parsing tree.
+This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell.
+
+
