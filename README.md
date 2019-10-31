@@ -1,6 +1,8 @@
 # CS 100 Programming Project
 
-> Authors: Dylan McDowell ([@DylanMcDowell](https://github.com/DylanMcDowell)) and Julien Martin-Prin ([@Flexiboy](https://github.com/Flexiboy))
+> Authors: Dylan McDowell (862075021) and Julien Martin-Prin (X673662)
+
+*Winter Quarter, 2019*
 
 ## Introduction
 
