@@ -43,4 +43,14 @@ This class is the base for the parsing tree. After the parsing, we will use this
 
 This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell.
 
+## Prototyping and Research
 
+After some testing, it is clear how each function is to be used:
+
+* execvp(): This call will be used to execute each parsed command in the Command class. It's worth noting, that when execvp succeeds, it causes the program to exit, requiring the use of child processes.
+* fork(): Creates a child process. Returns a value based on whether or not you are in the child process, the parent process, or if something has gone horribly,horribly wrong.
+* waitpid(): Similar to the wait() function, this function will prevent a parent process from running until a child process terminates. The waitpid() function differs in that it gives it's caller multiple options as to what child process needs to terminate, how the return is handled, and how that return can be handled.
+
+By using these functions in conjunction, the function caller can create a seperate process to run a command, and still process the result, so that the function that called execvp can pass back specific values(say, if the command failed).
+
+The parsing function was more difficult to implement than originally expected. Taking in input and parsing it by space only was not implemented in the function included in `prototype/`. Rather, the program simply parsed every character into a vector. This will be fixed during the building of Assignment 2.
