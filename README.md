@@ -54,3 +54,19 @@ After some testing, it is clear how each function is to be used:
 By using these functions in conjunction, the function caller can create a seperate process to run a command, and still process the result, so that the function that called execvp can pass back specific values(say, if the command failed).
 
 The parsing function was more difficult to implement than originally expected. Taking in input and parsing it by space only was not implemented in the function included in `prototype/`. Rather, the program simply parsed every character into a vector. This will be fixed during the building of Assignment 2.
+
+_Thanks to StackOverflow and [cs.esu.edu](http://www.cs.ecu.edu/karl/4630/sum01/example1.html)(Warning: site is still using http, not https)._
+
+## Roadmap
+
+1. Develop CommandBase base class - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/6)
+2. Develop and unit test Command class - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/7)
+3. Develop and unit test Connector class and subclasses - Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/8)
+4. Integration test of CommandBase composite pattern - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/9)
+5. Re-examine class structure up to this point. Make changes as needed. - Dylan McDowell & Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/10)
+6. Develop and unit test CommandParse class - Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/11)
+7. Develop and unit test CommandTree class - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/12)
+8. Integration test CommandParse and CommandTree class - Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/13)
+9. Final re-examination of class structure - Dylan McDowell & Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/14)
+10. Final testing - Julian Martin-Prin & Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/15)
+11. Release - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/16)
