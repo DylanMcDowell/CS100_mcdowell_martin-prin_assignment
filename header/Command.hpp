@@ -8,15 +8,13 @@ using namespace std;
 
 class Command: public CommandBase{
    private:
-	string cmd_args;
+	char* cmd_args;
    public:
-	Command(string cmd_args){
-		this->cmd_args = cmd_args;
+	Command(char* cmdargs){
+		this->cmd_args = cmdargs;
 	}
 
-	virtual int execute(){
-		return 0;
-	}
-}
+	virtual int execute();
+};
 
 #endif

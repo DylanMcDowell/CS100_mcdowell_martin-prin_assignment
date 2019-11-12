@@ -37,3 +37,12 @@ test
 # CMake Temp Files
 CMakeCache.txt
 CMakeFiles
+
+#Prototypes
+prototype/execvp_multi
+prototype/execvp_test
+prototype/fork
+prototype/fork0
+prototype/parseproto
+prototype/multifork
+
