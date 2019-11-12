@@ -25,7 +25,7 @@ int main(){
 	process = fork();
         if(process == 0){
                 result = execvp(args2[0], args2);
-                return -1;
+		return result;
         }
         else{
                 result = waitpid(-1, &c_status, 0);

@@ -8,9 +8,9 @@ using namespace std;
 
 class Command: public CommandBase{
    private:
-	char* cmd_args;
+	char* cmd_args[];
    public:
-	Command(char* cmdargs){
+	Command(char* cmdargs[]){
 		this->cmd_args = cmdargs;
 	}
 

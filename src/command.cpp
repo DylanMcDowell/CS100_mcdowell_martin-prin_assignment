@@ -11,7 +11,7 @@ int Command::execute(){
 	if(fork_ret == -1){
 		return -1;
 	}
-	if(fork_ret == 0){
+	else if(fork_ret == 0){
 		execvp(cmd_args[0], cmd_args);
 	}
 	else{
