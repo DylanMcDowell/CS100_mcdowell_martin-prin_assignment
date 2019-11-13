@@ -11,6 +11,6 @@ class CommandBase{
 	 */
 
 	virtual int execute() = 0;
-}
+};
 
 #endif

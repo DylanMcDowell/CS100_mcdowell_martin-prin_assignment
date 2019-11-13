@@ -3,15 +3,18 @@
 
 #include "CommandBase.hpp"
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Command: public CommandBase{
    private:
-	char* cmd_args[];
+	vector<string> cmd_args;
    public:
-	Command(char* cmdargs[]){
-		this->cmd_args = cmdargs;
+	Command(const vector<string>& cmdargs){
+		for(int i = 0; i < cmdargs.size(); i++){
+			cmd_args.push_back(cmdargs.at(i));
+		}
 	}
 
 	virtual int execute();
