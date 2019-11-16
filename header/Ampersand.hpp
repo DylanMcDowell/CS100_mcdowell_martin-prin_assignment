@@ -6,6 +6,8 @@
 
 #include "Connector.hpp"
 
+using namespace std;
+
 class Ampersand : public Connector
 {
 	private:
