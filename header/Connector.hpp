@@ -14,7 +14,7 @@ class Connector : public CommandBase
 		vector<CommandBase*> cmd;
 
 	public:
-		int execute() { return 0; };
+		virtual int execute() { return 0; };
 };
 
 #endif
