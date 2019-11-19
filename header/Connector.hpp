@@ -14,6 +14,10 @@ class Connector : public CommandBase
 		vector<CommandBase*> cmd;
 
 	public:
+		Connector(CommandBase* left, CommandBase* right){
+			cmd.at(0) = left;
+			cmd.at(1) = right;
+		}
 		virtual int execute() { return 0; };
 };
 
