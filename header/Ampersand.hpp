@@ -13,16 +13,23 @@ class Ampersand : public Connector
 	private:
 		vector<CommandBase*> cmd;
 		int rtrn = 0;
+		int result;
 
 	public:
-		int execute()
+		virtual int execute()
 		{
-			
-			if(cmd.at(0)->execute() == 0)
+			result = cmd.at(0)->execute();
+			if(result == -1){
+				rtrn = -1;
+			}
+			else if(result == 0)
 			{			
-
-				if(cmd.at(1)->execute() != 0)
+				result = cmd.at(1)->execute();
+				if(result == -1)
 				{
+					rtrn = -1;
+				}
+				else if(result == 1){
 					rtrn = 1;
 				}
 			}
