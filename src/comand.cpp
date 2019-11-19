@@ -24,7 +24,7 @@ int Command::execute(){
 		cmd_array[i] = NULL;
 
                 exe_res = execvp(cmd_array[0], cmd_array);
-		std::cout << "Went wrong." << std::endl;
+		
 
 		for(i = 0; i < cmd_args.size(); i++){
         	        delete cmd_array[i];
@@ -36,8 +36,8 @@ int Command::execute(){
                 waitpid(-1, &result, 0);
         }
 
-        if(result == 255){//this only ever happens if the resulting return is negative. i.e. it failed.
-                result = -1;
+        if(result != 0){//this only ever happens if the resulting return is negative. i.e. it failed.
+                result = 1;
         }
 
         return result;

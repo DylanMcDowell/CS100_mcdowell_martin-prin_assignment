@@ -30,6 +30,7 @@ TEST(CommandTest, EchoMultiExecute) {
 TEST(CommandTest, EchoOpExecute) {
         vector<string> testVector;
         testVector.push_back("echo");
+	testVector.push_back("-n");
         testVector.push_back("Hello   ");
 	testVector.push_back("\bWorld");
         testVector.push_back("\0");
@@ -41,9 +42,20 @@ TEST(CommandTest, EchoOpExecute) {
 TEST(CommandTest, lsExecute) {
         vector<string> testVector;
         testVector.push_back("ls");
+	testVector.push_back("-a");
         testVector.push_back("\0");
         CommandBase* testC = new Command(testVector);
-        EXPECT_EQ(testC->execute(), 0);
+        EXPECT_EQ(testC->execute(), 1);
+	delete testC;
+}
+
+TEST(CommandTest, GitStatusExecute){
+	vector<string> testVector;
+	testVector.push_back("git");
+	testVector.push_back("status");
+	testVector.push_back("\0");
+	CommandBase* testC = new Command(testVector);
+	EXPECT_EQ(testC->execute(), 0);
 	delete testC;
 }
 
@@ -53,7 +65,7 @@ TEST(CommandTest, BadExecute) {
         testVector.push_back("Hello");
         testVector.push_back("\0");
         CommandBase* testC = new Command(testVector);
-        EXPECT_EQ(testC->execute(), -1);
+        EXPECT_EQ(testC->execute(), 1);
 	delete testC;
 }
 

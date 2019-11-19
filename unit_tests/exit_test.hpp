@@ -6,7 +6,7 @@
 
 TEST(ExitTest, PlainExit){
 	CommandBase* testE = new Exit();
-	EXPECT_EQ(testE->execute(), 1);
+	EXPECT_EQ(testE->execute(), -1);
 	delete testE;
 }
 

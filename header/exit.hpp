@@ -8,7 +8,7 @@ using namespace std;
 class Exit: public CommandBase{
    public:
         virtual int execute(){
-		return 1;
+		return -1;
 	}
 };
 
