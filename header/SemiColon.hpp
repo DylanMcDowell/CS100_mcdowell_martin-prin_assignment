@@ -13,16 +13,30 @@ class SemiColon: public Connector
 	private:
 		vector<CommandBase*> cmd;
 		int rtrn = 0;
+		int result1 = 0;
+		int result2 = 0;
 
 	public:
-		int execute()
+		virtual int execute()
 		{
-			cmd.at(0)->execute();
-			cmd.at(1)->execute();
+			result1 = cmd.at(0)->execute();
 
-			if(cmd.at(0)->execute != 0 || cmd.at(1)->execute() != 0)
+			if(result1 == -1)
 			{
 				rtrn = -1;
+			}
+			else
+			{
+				result2 = cmad.at(1)->execute();
+				
+				if (result2 == -1)
+				{
+					rtrn = -1;
+				}
+				else if (result1 == 1 || result2 == 1)
+				{
+					rtrn = 1;
+				}
 			}
 
 			return rtrn;
