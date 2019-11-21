@@ -38,7 +38,7 @@ class Parser
 		/* Constructors*/
 		Parser() { this->parse = ""; this->c = ""; };
 
-		vector<string> parse(string line) 
+		vector<string> parseLine(string line) 
 		{
 			for (int i = 0; i < line.length(); i++)
 			{
