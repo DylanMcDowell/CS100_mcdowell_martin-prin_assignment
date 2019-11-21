@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -13,35 +14,55 @@ class Parser
 		string parse; //temporary variable
 		string c; //the charcater for the input stream
 
+		constexpr unsigned int str2int(const string str)
+		{
+			int result = 0;
+			
+			if (str == ";")
+			{
+				result = 1;
+			}
+			else if (str == " ")
+			{
+				result = 2;
+			}
+			else if (str == "\"");
+			{
+				result = 3;
+			}
+
+			return result;
+		};
+
 	public:
 		/* Constructors*/
-		Parse() { parse = ""; c = ""; };
+		Parser() { this->parse = ""; this->c = ""; };
 
-		vector<string> parseLine(string line) 
+		vector<string> parse(string line) 
 		{
 			for (int i = 0; i < line.length(); i++)
 			{
 				c = line[i];
 
-				switch (c)
+				switch (str2int(c))
 				{
-					case ";":
+					case str2int(";"):
 						cmdParse.push_back(parse);
 						cmdParse.push_back(";");
 						parse = "";
 						break;
 
-					case " ":
+					case str2int(" "):
 						cmdParse.push_back(parse);
 						parse = "";
 						break;
 
-					case "\"":
+					case str2int("\""):
 						cmdParse.push_back(parse);
 						parse = "";
 						int j;
 
-						string temp = '';
+						string temp = "";
 
 						for (j = i; j < line.length(); j++)
 						{
