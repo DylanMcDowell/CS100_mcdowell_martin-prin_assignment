@@ -46,18 +46,18 @@ class Parser
 
 				switch (str2int(c))
 				{
-					case str2int(";"):
+					case 1:
 						cmdParse.push_back(parse);
 						cmdParse.push_back(";");
 						parse = "";
 						break;
 
-					case str2int(" "):
+					case 2:
 						cmdParse.push_back(parse);
 						parse = "";
 						break;
 
-					case str2int("\""):
+					case 3:
 						cmdParse.push_back(parse);
 						parse = "";
 						int j;
