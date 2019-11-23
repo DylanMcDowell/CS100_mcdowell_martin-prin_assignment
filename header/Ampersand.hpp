@@ -10,21 +10,20 @@ using namespace std;
 
 class Ampersand : public Connector
 {
-	private:
-		vector<CommandBase*> cmd;
-		int rtrn = 0;
-		int result;
-
 	public:
+
+		Ampersand(CommandBase* l, CommandBase* r): Connector(l, r){}
+
 		virtual int execute()
 		{
-			result = cmd.at(0)->execute();
+			int result = left->execute();
+			int rtrn = 0;
 			if(result == -1){
 				rtrn = -1;
 			}
 			else if(result == 0)
 			{			
-				result = cmd.at(1)->execute();
+				result = right->execute();
 				if(result == -1)
 				{
 					rtrn = -1;

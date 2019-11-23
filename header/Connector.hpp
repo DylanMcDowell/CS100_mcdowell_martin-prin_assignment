@@ -10,13 +10,14 @@ using namespace std;
 
 class Connector : public CommandBase
 {
-	private:
-		vector<CommandBase*> cmd;
+	protected:
+		CommandBase* left;
+		CommandBase* right;
 
 	public:
-		Connector(CommandBase* left, CommandBase* right){
-			cmd.at(0) = left;
-			cmd.at(1) = right;
+		Connector(CommandBase* l, CommandBase* r){
+			left = l;
+			right = r;
 		}
 		virtual int execute() { return 0; };
 };

@@ -10,16 +10,16 @@ using namespace std;
 
 class SemiColon: public Connector
 {
-	private:
-		vector<CommandBase*> cmd;
-		int rtrn = 0;
-		int result1 = 0;
-		int result2 = 0;
-
 	public:
+
+		SemiColon(CommandBase* l, CommandBase* r): Connector(l, r) {}
+
 		virtual int execute()
 		{
-			result1 = cmd.at(0)->execute();
+
+			int result1 = cmd.at(0)->execute();
+			int result2;
+			int rtrn = 0;
 
 			if(result1 == -1)
 			{
@@ -33,7 +33,7 @@ class SemiColon: public Connector
 				{
 					rtrn = -1;
 				}
-				else if (result1 == 1 || result2 == 1)
+				else if (result2 == 1)
 				{
 					rtrn = 1;
 				}
