@@ -16,8 +16,8 @@ class OrBars : public Connector {
 		int execute()
 		{
 		
-			result = left->execute();
-
+			int result = left->execute();
+			int rtrn = 0; 
 			if(result == -1){
 				rtrn -1;
 			}
