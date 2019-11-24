@@ -8,25 +8,22 @@
 
 using namespace std;
 
-class OrBars : public Connector
-{
-	private:
-		vector<CommandBase*> cmd;
-		int rtrn = 0;
-		int result;
-
+class OrBars : public Connector {
 	public:
+
+		OrBars(CommandBase* left, CommandBase* right): Connector(left,right) {}
+
 		int execute()
 		{
 		
-			result = cmd.at(0)->execute();
+			result = left->execute();
 
 			if(result == -1){
 				rtrn -1;
 			}
-			else if(result == 0)
+			else if(result == 1)
 			{
-				result = cmd.at(1)->execute();
+				result = right->execute();
 				if(result == -1)
 				{
 					rtrn = -1;
@@ -42,7 +39,7 @@ class OrBars : public Connector
 			}
 			else
 			{
-				rtrn = 1;
+				rtrn = 0;
 			}
 
 			return rtrn;
