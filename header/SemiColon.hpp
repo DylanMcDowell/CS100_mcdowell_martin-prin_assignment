@@ -17,7 +17,7 @@ class SemiColon: public Connector
 		virtual int execute()
 		{
 
-			int result1 = cmd.at(0)->execute();
+			int result1 = left->execute();
 			int result2;
 			int rtrn = 0;
 
@@ -27,7 +27,7 @@ class SemiColon: public Connector
 			}
 			else
 			{
-				result2 = cmad.at(1)->execute();
+				result2 = right->execute();
 				
 				if (result2 == -1)
 				{
