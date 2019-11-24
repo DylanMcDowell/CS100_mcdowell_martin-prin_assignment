@@ -21,10 +21,10 @@ TEST(SemiColonTest, EchoEcho){
         testVector2.push_back("\0");
         CommandBase* cmd2 = new Command(testVector2);
         CommandBase* semi = new SemiColon(cmd1, cmd2);
-        EXPECT_EQ(amp->execute(), 0);
+        EXPECT_EQ(semi->execute(), 0);
 }
 
-TEST(AmpersandTest, FailEcho){
+TEST(SemiColonTest, FailEcho){
         vector<string> testVector1;
         testVector1.push_back("eho");
         testVector1.push_back("Hello");
@@ -36,7 +36,24 @@ TEST(AmpersandTest, FailEcho){
         testVector2.push_back("World");
         testVector2.push_back("\0");
         CommandBase* cmd2 = new Command(testVector2);
-        CommandBase* amp = new Ampersand(cmd1, cmd2);
-        EXPECT_EQ(amp->execute(), 1);
+        CommandBase* semi = new SemiColon(cmd1, cmd2);
+        EXPECT_EQ(semi->execute(), 0);
 }
 
+TEST(SemiColonTest, EchoFail){
+        vector<string> testVector1;
+        testVector1.push_back("echo");
+        testVector1.push_back("Hello");
+        testVector1.push_back("\0");
+        CommandBase* cmd1 = new Command(testVector1);
+
+        vector<string> testVector2;
+        testVector2.push_back("eco");
+        testVector2.push_back("World");
+        testVector2.push_back("\0");
+        CommandBase* cmd2 = new Command(testVector2);
+        CommandBase* semi = new SemiColon(cmd1, cmd2);
+        EXPECT_EQ(semi->execute(), 1);
+}
+
+#endif
