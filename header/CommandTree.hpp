@@ -30,7 +30,7 @@ class CommandTree{
 	CommandTree() {}
 
 	//Deconstructor
-	~CommandTree(){ delete root;}
+	~CommandTree(){ if(root != nullptr){ delete root; } }
 
 	//Forms a tree by calling parse(), then buildRec(...) on the whole vector.
 	void buildTree();
