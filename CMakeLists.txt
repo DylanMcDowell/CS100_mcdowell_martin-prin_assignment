@@ -7,7 +7,6 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_EXECUTABLE(test
 	unit_tests/unit_test.cpp
 	src/comand.cpp
-	header/parser_test.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
