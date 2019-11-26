@@ -1,9 +1,10 @@
+#include "gtest/gtest.h"
 #include "Parser.hpp"
 
 TEST(parserTest1, parseLine) {
-	Parser* test = new Parse();
+	Parser* test = new Parser();
 	string line = "echo \"Hello World!\"";
-	vector<string> result = parseLine(line);
+	vector<string> result = test->parseLine(line);
 
 	vector<string> expected;
 	expected.push_back("echo");

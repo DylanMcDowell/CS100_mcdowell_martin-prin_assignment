@@ -14,7 +14,7 @@ class Parser
 		string parse; //temporary variable
 		string c; //the charcater for the input stream
 
-		constexpr unsigned int str2int(const string str)
+		unsigned int str2int(const string str)
 		{
 			int result = 0;
 			
@@ -36,10 +36,12 @@ class Parser
 
 	public:
 		/* Constructors*/
-		Parser() { this->parse = ""; this->c = ""; };
+		Parser() { this->parse = ""; this->c = ""; }
 
 		vector<string> parseLine(string line) 
 		{
+			string temp = "";
+
 			for (int i = 0; i < line.length(); i++)
 			{
 				c = line[i];
@@ -62,7 +64,7 @@ class Parser
 						parse = "";
 						int j;
 
-						string temp = "";
+						temp = "";
 
 						for (j = i; j < line.length(); j++)
 						{
@@ -89,6 +91,8 @@ class Parser
 						break;
 				}
 			}
+			
+			return cmdParse;
 		};
 		
 };
