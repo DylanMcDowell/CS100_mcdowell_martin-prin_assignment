@@ -107,6 +107,7 @@ class Parser
 						}
 						
 						cmdParse.push_back("(");
+						parse = "";
 						break;
 
 					case 5: // case ")"
@@ -115,7 +116,8 @@ class Parser
 							cmdParse.push_back(parse);
 						}
 
-						cmdParse.push_back(parse);
+						cmdParse.push_back(")");
+						parse = "";
 						break;
 
 					default:
