@@ -31,7 +31,7 @@ TEST(parenthesis, parseLine) {
 TEST(mixed, parseLine) {
 	Parser* test = new Parser();
 	string line = "ls -a; echo hello && mkdir test || echo \"world\"; git status || (exit)";
-	vector<string> result test->parseLine(line);
+	vector<string> result = test->parseLine(line);
 
 	vector<string> expected;
 	expected.push_back("ls");
