@@ -76,7 +76,13 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 		cmd.push_back(parsed.at(j));
 	}
 
-	return new Command(cmd);
+
+	if(cmd.at(0) == "exit"){
+		return new Exit();
+	}
+	else{
+		return new Command(cmd);
+	}
 
 	//END LEAF BLOCK//
 }
