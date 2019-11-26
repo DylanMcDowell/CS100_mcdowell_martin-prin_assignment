@@ -8,6 +8,7 @@
 #include "Ampersand.hpp"
 #include "OrBars.hpp"
 #include "SemiColon.hpp"
+#include "Parser.hpp"
 
 class CommandTree{
       private:
