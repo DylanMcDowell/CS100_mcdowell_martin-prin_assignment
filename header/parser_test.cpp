@@ -8,7 +8,7 @@ TEST(parserTest1, parseLine) {
 
 	vector<string> expected;
 	expected.push_back("echo");
-	expected.push_back("\"Hello World!\"");
+	expected.push_back("Hello World!");
 
 	EXPECT_EQ(result, expected);
 }

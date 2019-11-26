@@ -12,21 +12,21 @@ class Parser
 	private:
 		vector<string> cmdParse;
 		string parse; //temporary variable
-		string c; //the charcater for the input stream
+		char c; //the charcater for the input stream
 
-		unsigned int str2int(const string str)
+		unsigned int str2int(const char c1)
 		{
 			int result = 0;
 			
-			if (str == ";")
+			if (c1 == ';')
 			{
 				result = 1;
 			}
-			else if (str == " ")
+			else if (c1 == 0x20)
 			{
 				result = 2;
 			}
-			else if (str == "\"");
+			else if (c1 == '\"')
 			{
 				result = 3;
 			}
@@ -36,11 +36,11 @@ class Parser
 
 	public:
 		/* Constructors*/
-		Parser() { this->parse = ""; this->c = ""; }
+		Parser() {};
 
 		vector<string> parseLine(string line) 
 		{
-			string temp = "";
+			string temp;
 
 			for (int i = 0; i < line.length(); i++)
 			{
@@ -48,25 +48,23 @@ class Parser
 
 				switch (str2int(c))
 				{
-					case 1:
+					case 1: // case ";"
 						cmdParse.push_back(parse);
 						cmdParse.push_back(";");
 						parse = "";
 						break;
 
-					case 2:
+					case 2: // case " "
 						cmdParse.push_back(parse);
 						parse = "";
 						break;
 
-					case 3:
-						cmdParse.push_back(parse);
-						parse = "";
+					case 3: // case "\""
 						int j;
 
 						temp = "";
 
-						for (j = i; j < line.length(); j++)
+						for (j = i + 1; j < line.length(); j++)
 						{
 							temp = line[j];
 							
@@ -76,8 +74,9 @@ class Parser
 							}
 							else
 							{
-								cmdParse.push_back("\"" + parse + "\"");
+								cmdParse.push_back(parse);
 								parse = "";
+								break;
 							}
 
 						}
@@ -91,7 +90,7 @@ class Parser
 						break;
 				}
 			}
-			
+
 			return cmdParse;
 		};
 		
