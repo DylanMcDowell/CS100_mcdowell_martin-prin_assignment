@@ -34,6 +34,10 @@ class Parser
 			{
 				result = 4;
 			}
+			else if (c1 == ')')
+			{
+				result = 5;
+			}
 
 			return result;
 		};
@@ -53,13 +57,21 @@ class Parser
 				switch (str2int(c))
 				{
 					case 1: // case ";"
-						cmdParse.push_back(parse);
+						if (parse != "")
+						{
+							cmdParse.push_back(parse);
+						}						
+
 						cmdParse.push_back(";");
 						parse = "";
 						break;
 
 					case 2: // case " "
-						cmdParse.push_back(parse);
+						if (parse != "")
+						{
+							cmdParse.push_back(parse);
+						}
+
 						parse = "";
 						break;
 
@@ -89,25 +101,21 @@ class Parser
 						break;
 
 					case 4: // case "("
-						temp = "";
-
-						for (j = i + 1; j < line.length(); j++)
+						if (parse != "")
 						{
-							temp = line[j];
-
-							if (temp != ")")
-							{
-								parse += temp;
-							}
-							else
-							{
-								break;
-							}
+							cmdParse.push_back(parse);
 						}
 						
-						cmdParse.push_back("(" + parse + ")");
-						i = j;
-						parse = "";
+						cmdParse.push_back("(");
+						break;
+
+					case 5: // case ")"
+						if (parse != "")
+						{
+							cmdParse.push_back(parse);
+						}
+
+						cmdParse.push_back(parse);
 						break;
 
 					default:
