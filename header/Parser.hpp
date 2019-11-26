@@ -30,6 +30,10 @@ class Parser
 			{
 				result = 3;
 			}
+			else if (c1 == '(')
+			{
+				result = 4;
+			}
 
 			return result;
 		};
@@ -74,13 +78,34 @@ class Parser
 							}
 							else
 							{
-								cmdParse.push_back(parse);
-								parse = "";
 								break;
 							}
 
 						}
 						
+						cmdParse.push_back(parse);
+						i = j;
+						parse = "";
+						break;
+
+					case 4: // case "("
+						temp = "";
+
+						for (j = i + 1; j < line.length(); j++)
+						{
+							temp = line[j];
+
+							if (temp != ")")
+							{
+								parse += temp;
+							}
+							else
+							{
+								break;
+							}
+						}
+						
+						cmdParse.push_back("(" + parse + ")");
 						i = j;
 						parse = "";
 						break;
