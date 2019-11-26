@@ -88,7 +88,12 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 }
 
 void CommandTree::parse(){
-	//FIXME
+	string line;
+	Parser* parser = new Parser();
+	std::cout << "$" << std::flush;
+	std::getline(cin, line);
+	parsed = parser->parseLine(line);
+	delete parser;
 }
 
 void CommandTree::buildTree(){
