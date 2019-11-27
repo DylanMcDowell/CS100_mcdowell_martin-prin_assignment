@@ -4,6 +4,11 @@
 #include "../header/CommandTree.hpp"
 #include "gtest/gtest.h"
 
-
+TEST(CommandTreeTest, InputTest){
+	CommandTree cmdT;
+	cmdT.buildTree();
+	std::cout << "buildTree finished" << std::endl;
+	cmdT.execute();
+}
 
 #endif

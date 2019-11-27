@@ -18,7 +18,7 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 	// which counts how many parentheses pairs have been closed (we go 
 	// backward, remember?) and opened, is not zero. 
 
-	for(int i = end; i >= 0; i--){
+	for(int i = end; i >= beg; i--){
 		if(parsed.at(i) == "("){
 			parenNum++;
 		}
@@ -45,6 +45,7 @@ CommandBase* CommandTree::buildRec(int beg, int end){
                 }
 
 		else if(parsed.at(i) == ";" && parenNum == 0){
+			std::cout << "i = " << i << std::endl;
                         left = this->buildRec(beg, i-1);
                         right = this->buildRec(i+1, end);
                         if(!left || !right){
