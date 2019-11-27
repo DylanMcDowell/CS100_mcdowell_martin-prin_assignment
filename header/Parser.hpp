@@ -125,7 +125,9 @@ class Parser
 						break;
 				}
 			}
-
+			if(parse != ""){
+				cmdParse.push_back(parse);
+			}
 			return cmdParse;
 		};
 		
