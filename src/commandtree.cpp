@@ -89,9 +89,10 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 }
 
 void CommandTree::parse(){
+	parsed.clear();
 	string line;
 	Parser* parser = new Parser();
-	std::cout << "$" << std::flush;
+	std::cout << "$ " << std::flush;
 	std::getline(cin, line);
 	parsed = parser->parseLine(line);
 	delete parser;
@@ -110,4 +111,15 @@ void CommandTree::buildTree(){
 
 void CommandTree::execute(){
 	root->execute();
+}
+
+void CommandTree::vectorBuild(vector<string> v){
+	parsed.clear();
+	for(int i = 0; i < v.size(); i++){
+		parsed.push_back(v.at(i));
+	}
+	root = this->buildRec(0, parsed.size()-1);
+	if(root == nullptr){
+		std::cout << "Fatal Error." << std::endl;
+	}
 }
