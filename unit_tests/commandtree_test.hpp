@@ -61,7 +61,20 @@ TEST(CommandTreeTest, ExitTest){
 }
 
 TEST(CommandTreeTest, ParenthesesTest){
-
+	vector<string> v;
+        v.push_back("echo");
+        v.push_back("Testing");
+	v.push_back("||");
+	v.push_back("(");
+	v.push_back("echo");
+	v.push_back("Test");
+	v.push_back(";");
+	v.push_back("echo");
+	v.push_back("failure");
+	v.push_back(")");
+        CommandTree cmdT;
+        cmdT.vectorBuild(v);
+        cmdT.execute();
 }
 
 #endif
