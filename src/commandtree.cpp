@@ -122,6 +122,6 @@ void CommandTree::vectorBuild(vector<string> v){
 	root = this->buildRec(0, parsed.size()-1);
 	if(root == nullptr){
 		std::cout << "Fatal Error." << std::endl;
-		paresed.clear();
+		parsed.clear();
 	}
 }
