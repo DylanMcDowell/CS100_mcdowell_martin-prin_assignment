@@ -45,8 +45,7 @@ CommandBase* CommandTree::buildRec(int beg, int end){
                 }
 
 		else if(parsed.at(i) == ";" && parenNum == 0){
-			std::cout << "i = " << i << std::endl;
-                        left = this->buildRec(beg, i-1);
+			left = this->buildRec(beg, i-1);
                         right = this->buildRec(i+1, end);
                         if(!left || !right){
                                 return nullptr;
@@ -110,7 +109,9 @@ void CommandTree::buildTree(){
 }
 
 void CommandTree::execute(){
-	root->execute();
+	if(root != nullptr){
+		root->execute();
+	}
 }
 
 void CommandTree::vectorBuild(vector<string> v){
@@ -121,5 +122,6 @@ void CommandTree::vectorBuild(vector<string> v){
 	root = this->buildRec(0, parsed.size()-1);
 	if(root == nullptr){
 		std::cout << "Fatal Error." << std::endl;
+		paresed.clear();
 	}
 }
