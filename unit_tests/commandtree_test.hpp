@@ -32,6 +32,18 @@ TEST(CommandTreeTest, SingleConnector){
 }
 
 TEST(CommandTreeTest, MultiConnector){
+	vector<string> v;
+        v.push_back("echo");
+        v.push_back("Hello World");
+	v.push_back("||");
+	v.push_back("echo");
+	v.push_back("Critical Failure!");
+	v.push_back("&&");
+	v.push_back("echo");
+	v.push_back("Critical Success!");
+        CommandTree cmdT;
+        cmdT.vectorBuild(v);
+        cmdT.execute();
 }
 
 TEST(CommandTreeTest, ExitTest){
