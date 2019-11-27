@@ -11,15 +11,27 @@
 //}
 
 TEST(CommandTreeTest, SingleEcho){
-
+	vector<string> v;
+	v.push_back("echo");
+	v.push_back("Hello World");
+	CommandTree cmdT;
+	cmdT.vectorBuild(v);
+	cmdT.execute();
 }
 
 TEST(CommandTreeTest, SingleConnector){
-
+	vector<string> v;
+        v.push_back("echo");
+        v.push_back("Hello");
+	v.push_back(";");
+	v.push_back("echo");
+	v.push_back("World");
+        CommandTree cmdT;
+        cmdT.vectorBuild(v);
+        cmdT.execute();
 }
 
 TEST(CommandTreeTest, MultiConnector){
-
 }
 
 TEST(CommandTreeTest, ExitTest){
