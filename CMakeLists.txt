@@ -10,5 +10,11 @@ ADD_EXECUTABLE(test
 	src/commandtree.cpp
 )
 
+ADD_EXECUTABLE(rshell
+	src/main.cpp
+	src/comand.cpp
+	src/commandtree.cpp
+)
+
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
