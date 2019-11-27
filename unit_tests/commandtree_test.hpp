@@ -47,7 +47,17 @@ TEST(CommandTreeTest, MultiConnector){
 }
 
 TEST(CommandTreeTest, ExitTest){
-
+	vector<string> v;
+        v.push_back("exit");
+        v.push_back(";");
+	v.push_back("echo");
+	v.push_back("This should not print");
+	v.push_back(";");
+	v.push_back("echo");
+	v.push_back("failure");
+        CommandTree cmdT;
+        cmdT.vectorBuild(v);
+        cmdT.execute();
 }
 
 TEST(CommandTreeTest, ParenthesesTest){
