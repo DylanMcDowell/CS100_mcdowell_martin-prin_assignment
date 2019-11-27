@@ -31,6 +31,9 @@ class Ampersand : public Connector
 				else if(result == 1){
 					rtrn = 1;
 				}
+				else{
+					rtrn = 0;
+				}
 			}
 			else
 			{
