@@ -80,6 +80,12 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 	if(cmd.at(0) == "exit"){
 		return new Exit();
 	}
+	else if(cmd.at(0) == "test" || cmd.at(0) == "["){
+		for(int j = 1; j < cmd.size(); j++){
+			cmd.at(j-1) = cmd.at(j);
+		}
+		return new ShellTest(cmd);
+	}
 	else{
 		return new Command(cmd);
 	}
