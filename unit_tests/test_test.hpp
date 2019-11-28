@@ -5,7 +5,7 @@
 
 TEST(TestTest, NoFlagTest){
 	vector<string> v;
-	v.push_back("../test_test.hpp");
+	v.push_back("unit_tests/test_test.hpp");
 	ShellTest test(v);
 	EXPECT_EQ(test.execute(), 0);
 }
