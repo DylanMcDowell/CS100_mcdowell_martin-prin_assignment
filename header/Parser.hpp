@@ -38,6 +38,10 @@ class Parser
 			{
 				result = 5;
 			}
+			else if (c1 == '#')
+			{
+				result = 6;
+			}
 
 			return result;
 		};
@@ -118,6 +122,10 @@ class Parser
 
 						cmdParse.push_back(")");
 						parse = "";
+						break;
+
+					case 6: // case "#"
+						i = line.length();
 						break;
 
 					default:
