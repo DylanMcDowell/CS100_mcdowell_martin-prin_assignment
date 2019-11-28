@@ -23,13 +23,21 @@ The CommandBase class will serve as the interface for the composite. It has one 
 
 **Command**
 
-This is the class that represents the command. After parsing, each command will be represented as an instance of this class. It contains the command itself, the arguments and parameters. When execute is called on it, it uses execvp() to perform the command, and return a value dependent on the command's success; -1 for failure, 0, for success, and 1 for exit.
+This is the class that represents the command. After parsing, each command will be represented as an instance of this class. It contains the command itself, the arguments and parameters. When execute is called on it, it uses execvp() to perform the command, and return a value dependent on the command's success; -1 for failure, or 0 for a success.
+
+**Exit**
+
+This class will be created by the CommandTree when an exit call is found in the tree. It returns a -1 for it's execute function, otherwise doing nothing.
+
+**ShellTest**
+
+This class implements the test and square bracket([]) commands. By calling the stat function and the correct macros, it determines if a passed in filepath exists. By passing in flags before the filepath, it can distinguish between regular files and directories. It is called by the CommandTree function when it encounters a test call.
 
 **Connector**
 
 This is the class for the connector. This class will recognize each connector and associate it with its corresponding class. The class, and it's subclasses, has a vector of CommandBase pointers(limited to two pointers), and the virtual execute() function. This class serves as a base class for the various types of connectors required. The differents classes for connectors are the following:
 
-* **SemiColon**: The SemiColon class overrides the execute() function by running the leftmost CommandBase's execute(), then the leftmost's.
+* **SemiColon**: The SemiColon class overrides the execute() function by running the leftmost CommandBase's execute(), then the rightmost's. It returns it's leftmost execute() result.
 * **Ampersand**: The Ampersand class overrides the execute() function by running the rightmost's execute() only if the leftmost one's succeeds.
 * **OrBars**: The OrBars class overrides the execute() function by running the rightmost's execute() only if the leftmost one's fails.
 
@@ -37,11 +45,11 @@ Each of these functions' execute() returns a zero if ether it's left or right Co
 
 **CommandTree**
 
-This class is the base for the parsing tree. After the parsing, we will use this class to create the tree. This class will create each node and leave on our parsing tree. It will also prioritize semicolons to be higher on the tree than other CommandBases
+This class is the base for the parsing tree. After the parsing, we will use this class to create the tree. This class will create each node and leave on our parsing tree. It will recursively run backwards through the tree, seperating the tree by connectors as selected by the parser. As a result, the first commands moving forward will execute first, as they will be at the bottom. The only exception to this is in scenarios using parentheses, where the block of code within the parentheses will be considered as a command until it is processed as one, where the outer parentheses will be removed and the CommandTree will recursively create a subtree from that block
 
 **CommandParse**
 
-This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell.
+This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell. Also, quotations, parentheses, and semicolons are all automatically given their own cell, and the hash symbol (#) will act as comments 
 
 ## Prototyping and Research
 
