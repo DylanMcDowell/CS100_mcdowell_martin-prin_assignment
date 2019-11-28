@@ -8,11 +8,11 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-class Test: public CommandBase{
+class ShellTest: public CommandBase{
      private:
 	vector<string> args;
      public:
-	Test(const vector<string>& cmdargs){
+	ShellTest(const vector<string>& cmdargs){
 		for(int i = 0;i < cmdargs.size();i++){
 			args.push_back(cmdargs.at(i));
 		}

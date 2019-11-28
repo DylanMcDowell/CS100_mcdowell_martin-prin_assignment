@@ -7,6 +7,7 @@
 #include "exit_test.hpp"
 #include "parser_test.hpp"
 #include "commandtree_test.hpp"
+#include "test_test.hpp"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
