@@ -18,4 +18,20 @@ TEST(TestTest, eFlagTest){
 	EXPECT_EQ(test.execute(), 0);
 }
 
+TEST(TestTest, fFlagTest){
+        vector<string> v;
+        v.push_back("-f");
+        v.push_back("unit_tests/test_test.hpp");
+        ShellTest test(v);
+        EXPECT_EQ(test.execute(), 0);
+}
+
+TEST(TestTest, fFlagDir){
+        vector<string> v;
+        v.push_back("-f");
+        v.push_back("unit_tests");
+        ShellTest test(v);
+        EXPECT_EQ(test.execute(), 1);
+}
+
 #endif
