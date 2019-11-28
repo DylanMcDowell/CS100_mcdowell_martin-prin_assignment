@@ -9,6 +9,7 @@
 #include "OrBars.hpp"
 #include "SemiColon.hpp"
 #include "Parser.hpp"
+#include "Test.hpp"
 
 class CommandTree{
       private:
