@@ -10,4 +10,12 @@ TEST(TestTest, NoFlagTest){
 	EXPECT_EQ(test.execute(), 0);
 }
 
+TEST(TestTest, eFlagTest){
+	vector<string> v;
+	v.push_back("-e");
+	v.push_back("unit_tests/test_test.hpp");
+	ShellTest test(v);
+	EXPECT_EQ(test.execute(), 0);
+}
+
 #endif
