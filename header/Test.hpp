@@ -24,9 +24,9 @@ class ShellTest: public CommandBase{
 		int flag = 0;
 		char flagC;
 
-		if(args.at(filepath).at(0) == '-' && args.at(filepath).size() >= 2){
+		if(args.at(0).at(0) == '-' && args.at(filepath).size() >= 2){
 			filepath = 1;
-			flagC = args.at(filepath).at(1);
+			flagC = args.at(0).at(1);
 			if(flagC == 'd'){ flag = 1; }
 			else if(flagC == 'f'){ flag = 2; }
 		}

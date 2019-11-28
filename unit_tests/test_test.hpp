@@ -26,7 +26,7 @@ TEST(TestTest, fFlagTest){
         EXPECT_EQ(test.execute(), 0);
 }
 
-TEST(TestTest, fFlagDir){
+TEST(TestTest, fFlagFail){
         vector<string> v;
         v.push_back("-f");
         v.push_back("unit_tests");
@@ -35,3 +35,4 @@ TEST(TestTest, fFlagDir){
 }
 
 #endif
+
