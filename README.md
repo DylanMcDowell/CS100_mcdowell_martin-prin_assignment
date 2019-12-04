@@ -13,7 +13,7 @@ To proceed, we will use a parse tree by associating a priority to each connector
 
 ## OMT diagram
 
-<img src="images/Screen_Shot_2019-10-28_at_17.15.23.png" with="1000">
+<img src="images/OMT Diagram.png" with="1000">
 
 ## Class Description
 
