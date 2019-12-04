@@ -35,11 +35,19 @@ This is the class for the connector. This class will recognize each connector an
 
 Each of these functions' execute() returns a zero if ether it's left or right CommandBase succeeds.
 
+**Exit**
+
+This function is the exit case, it only calls the execute function and exit the program.
+
+**ShellTest**
+
+
+
 **CommandTree**
 
 This class is the base for the parsing tree. After the parsing, we will use this class to create the tree. This class will create each node and leave on our parsing tree. It will also prioritize semicolons to be higher on the tree than other CommandBases
 
-**CommandParse**
+**Parser**
 
 This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell.
 
