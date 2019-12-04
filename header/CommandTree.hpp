@@ -8,6 +8,8 @@
 #include "Ampersand.hpp"
 #include "OrBars.hpp"
 #include "SemiColon.hpp"
+#include "Parser.hpp"
+#include "Test.hpp"
 
 class CommandTree{
       private:
@@ -37,7 +39,9 @@ class CommandTree{
 
 	//Calls execute() on root
 	void execute();
-	
+
+	//Makes parsed into the passed in vector. Primarily for testing purposes, but still usable.
+	void vectorBuild(vector<string>);	
 };
 
 #endif //_COMMANDTREE_HPP_

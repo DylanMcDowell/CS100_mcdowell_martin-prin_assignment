@@ -1,5 +1,5 @@
 #ifndef _SEMICOLON_HPP_
-#define _SEMICOLON_HPP
+#define _SEMICOLON_HPP_
 
 #include <iostream>
 #include <string>

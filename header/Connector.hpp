@@ -19,6 +19,12 @@ class Connector : public CommandBase
 			left = l;
 			right = r;
 		}
+
+		~Connector(){
+			delete left;
+			delete right;
+		}
+
 		virtual int execute() { return 0; };
 };
 

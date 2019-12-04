@@ -18,7 +18,7 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 	// which counts how many parentheses pairs have been closed (we go 
 	// backward, remember?) and opened, is not zero. 
 
-	for(int i = end; i >= 0; i--){
+	for(int i = end; i >= beg; i--){
 		if(parsed.at(i) == "("){
 			parenNum++;
 		}
@@ -45,7 +45,7 @@ CommandBase* CommandTree::buildRec(int beg, int end){
                 }
 
 		else if(parsed.at(i) == ";" && parenNum == 0){
-                        left = this->buildRec(beg, i-1);
+			left = this->buildRec(beg, i-1);
                         right = this->buildRec(i+1, end);
                         if(!left || !right){
                                 return nullptr;
@@ -80,6 +80,12 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 	if(cmd.at(0) == "exit"){
 		return new Exit();
 	}
+	else if(cmd.at(0) == "test" || cmd.at(0) == "["){
+		for(int j = 1; j < cmd.size(); j++){
+			cmd.at(j-1) = cmd.at(j);
+		}
+		return new ShellTest(cmd);
+	}
 	else{
 		return new Command(cmd);
 	}
@@ -88,7 +94,13 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 }
 
 void CommandTree::parse(){
-	//FIXME
+	parsed.clear();
+	string line;
+	Parser* parser = new Parser();
+	std::cout << "$ " << std::flush;
+	std::getline(cin, line);
+	parsed = parser->parseLine(line);
+	delete parser;
 }
 
 void CommandTree::buildTree(){
@@ -103,5 +115,19 @@ void CommandTree::buildTree(){
 }
 
 void CommandTree::execute(){
-	root->execute();
+	if(root != nullptr){
+		root->execute();
+	}
+}
+
+void CommandTree::vectorBuild(vector<string> v){
+	parsed.clear();
+	for(int i = 0; i < v.size(); i++){
+		parsed.push_back(v.at(i));
+	}
+	root = this->buildRec(0, parsed.size()-1);
+	if(root == nullptr){
+		std::cout << "Fatal Error." << std::endl;
+		parsed.clear();
+	}
 }
