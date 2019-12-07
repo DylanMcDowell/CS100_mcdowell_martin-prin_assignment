@@ -13,7 +13,7 @@ To proceed, we will use a parse tree by associating a priority to each connector
 
 ## OMT diagram
 
-<img src="images/Screen_Shot_2019-10-28_at_17.15.23.png" with="1000">
+<img src="images/OMT Diagram.png" with="1000">
 
 ## Class Description
 
@@ -43,11 +43,19 @@ This is the class for the connector. This class will recognize each connector an
 
 Each of these functions' execute() returns a zero if ether it's left or right CommandBase succeeds.
 
+**Exit**
+
+This function is the exit case, it only calls the execute function and exit the program.
+
+**ShellTest**
+
+
+
 **CommandTree**
 
 This class is the base for the parsing tree. After the parsing, we will use this class to create the tree. This class will create each node and leave on our parsing tree. It will recursively run backwards through the tree, seperating the tree by connectors as selected by the parser. As a result, the first commands moving forward will execute first, as they will be at the bottom. The only exception to this is in scenarios using parentheses, where the block of code within the parentheses will be considered as a command until it is processed as one, where the outer parentheses will be removed and the CommandTree will recursively create a subtree from that block
 
-**CommandParse**
+**Parser**
 
 This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell. Also, quotations, parentheses, and semicolons are all automatically given their own cell, and the hash symbol (#) will act as comments 
 
@@ -69,12 +77,12 @@ _Thanks to StackOverflow and [cs.esu.edu](http://www.cs.ecu.edu/karl/4630/sum01/
 
 1. Develop CommandBase base class - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/6)
 2. Develop and unit test Command class - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/7)
-3. Develop and unit test Connector class and subclasses - Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/8)
+3. Develop and unit test Connector class and subclasses - Julien Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/8)
 4. Integration test of CommandBase composite pattern - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/9)
-5. Re-examine class structure up to this point. Make changes as needed. - Dylan McDowell & Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/10)
-6. Develop and unit test CommandParse class - Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/11)
+5. Re-examine class structure up to this point. Make changes as needed. - Dylan McDowell & Julien Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/10)
+6. Develop and unit test CommandParse class - Julien Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/11)
 7. Develop and unit test CommandTree class - Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/12)
-8. Integration test CommandParse and CommandTree class - Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/13)
-9. Final re-examination of class structure - Dylan McDowell & Julian Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/14)
-10. Final testing - Julian Martin-Prin & Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/15)
+8. Integration test CommandParse and CommandTree class - Julien Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/13)
+9. Final re-examination of class structure - Dylan McDowell & Julien Martin-Prin - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/14)
+10. Final testing - Julien Martin-Prin & Dylan McDowell - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/15)
 11. Release - [Issue](https://github.com/cs100/assignment-a_01-mcdowell-martin-prin/issues/16)
