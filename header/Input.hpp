@@ -20,7 +20,11 @@ class Input : public ExecuteDecorator
 
 		~Input() { delete cmd; }
 
-		virtual int execute() {};
+		virtual int execute() 
+		{
+			int new_in = 0; 
+			return this->cmd->execute(); 
+		};
 };
 
 #endif
