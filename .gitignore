@@ -9,6 +9,7 @@ CMakeCache.txt
 *.exe
 
 execvp_multi
+dup_input_test
 
 test
 rshell
