@@ -70,10 +70,20 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 	if(parsed.at(beg) == "(" && parsed.at(end) == ")"){
 		return this->buildRec(beg+1, end-1);
 	}
-	else{
-		return this->buildLeaf(beg, end);
 
-	}
+	for(int i = end; i >= beg; i--){
+                if(parsed.at(i) == "|" && parenNum == 0){
+                        left = this->buildRec(beg, i-1);
+                        right = this->buildRec(i+1, end);
+                        if(!left || !right){
+                                return nullptr;
+                        }
+			//Return a pipe
+                        return nullptr ;
+		}
+        }
+
+	return this->buildLeaf(beg, end);
 
 	//END LEAF BLOCK//
 }
@@ -84,6 +94,15 @@ CommandBase* CommandTree::buildLeaf(int beg, int end){
 
 	vector<string> cmd;
         for(int j = beg; j <= end; j++){
+		if(parsed.at(j) == "<"){
+			std::cout << "<" << std::endl;
+		}
+		else if(parsed.at(j) == ">"){
+			std::cout << ">" << std::endl;
+		}
+		else if(parsed.at(j) == ">>"){
+			std::cout << ">>" << std::endl;
+		}
                 cmd.push_back(parsed.at(j));
         }
 
