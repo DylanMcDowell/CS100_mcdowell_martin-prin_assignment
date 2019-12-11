@@ -2,28 +2,15 @@
 #include <unistd.h> 
 #include <stdio.h> 
 #include <fcntl.h>
-#include <sys/wait.h> 
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h> 
 #include <iostream>
 #include <cstring>
 
 using namespace std;
 
 int main(){
-	int newin = open("duptest.txt", O_RDWR);
-
-	if(newin < 0){
-		cout << "AAAAAAAAAAAAAAAAAAH" << endl;
-		return 1;
-	}	
-
-	int dupin = dup(0);
-
-	//close(0);
-
-	//dup(newin);
-
-	dup2(newin, 0);
-
 	char* args[] = {"echo", NULL};
 
 	int exe_res;
@@ -35,7 +22,24 @@ int main(){
 		return -1;
 	}
 	else if(fork_ret == 0){
+		int newin = open("duptest.txt", O_RDWR);
+
+        	if(newin < 0){
+        	        cout << "AAAAAAAAAAAAAAAAAAH" << endl;
+        	        return 1;
+        	}
+
+        	int dupin = dup(0);
+
+        	close(0);
+
+       		dup(newin);	
 		exe_res = execvp(args[0], args);
+
+		close(0);
+
+		dup(dupin);
+
 		exit(exe_res);
 	}
 	else{
@@ -43,10 +47,6 @@ int main(){
 	}
 
 	cout << result << endl;
-
-	close(0);
-
-        dup(dupin);
 
 	return 0;
 }
