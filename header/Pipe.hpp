@@ -13,25 +13,29 @@ class Pipe : public Connector
 
 	virtual int execute(){
 		int pipeFD[2];
+		int result;
 
 		pipe(pipeFD);
 
 		int dupout = dup(1);
 		close(1);
 		dup(pipeFD[1]);
-		left->execute();
+		result = left->execute();
 		close(1);
 		dup(dupout);
 
+		if(result = 0){
 		int dupin = dup(0);
-		close(0);
-		dup(pipeFD[0]);
-		right->execute();
-		close(0);
-		dup(dupin);
+			close(0);
+			dup(pipeFD[0]);
+			result = right->execute();
+			close(0);
+			dup(dupin);
+		}
 
 		close(pipeFD[1]);
 		close(pipeFD[2]);
+		return result;
 	}
 };
 
