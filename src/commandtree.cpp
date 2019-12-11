@@ -60,6 +60,9 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 		return nullptr;
 	}
 
+	left = nullptr;
+	right = nullptr;
+
 	//END COMPOSITE BLOCK//
 
 	//**LEAF BLOCK**//
@@ -71,26 +74,54 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 		return this->buildRec(beg+1, end-1);
 	}
 
-	vector<string> cmd;
-	for(int j = beg; j <= end; j++){
-		cmd.push_back(parsed.at(j));
-	}
-
-
-	if(cmd.at(0) == "exit"){
-		return new Exit();
-	}
-	else if(cmd.at(0) == "test" || cmd.at(0) == "["){
-		for(int j = 1; j < cmd.size(); j++){
-			cmd.at(j-1) = cmd.at(j);
+	for(int i = end; i >= beg; i--){
+                if(parsed.at(i) == "|" && parenNum == 0){
+                        left = this->buildRec(beg, i-1);
+                        right = this->buildRec(i+1, end);
+                        if(!left || !right){
+                                return nullptr;
+                        }
+			//Return a pipe
+                        return new Pipe(left, right);
 		}
-		return new ShellTest(cmd);
-	}
-	else{
-		return new Command(cmd);
-	}
+        }
+
+	return this->buildLeaf(beg, end);
 
 	//END LEAF BLOCK//
+}
+
+
+CommandBase* CommandTree::buildLeaf(int beg, int end){
+
+
+	vector<string> cmd;
+        for(int j = beg; j <= end; j++){
+		if(parsed.at(j) == "<"){
+			std::cout << "<" << std::endl;
+		}
+		else if(parsed.at(j) == ">"){
+			std::cout << ">" << std::endl;
+		}
+		else if(parsed.at(j) == ">>"){
+			std::cout << ">>" << std::endl;
+		}
+                cmd.push_back(parsed.at(j));
+        }
+
+
+        if(cmd.at(0) == "exit"){
+                return new Exit();
+        }
+        else if(cmd.at(0) == "test" || cmd.at(0) == "["){
+                for(int j = 1; j < cmd.size(); j++){
+                        cmd.at(j-1) = cmd.at(j);
+                }
+                return new ShellTest(cmd);
+        }
+        else{
+                return new Command(cmd);
+        }
 }
 
 void CommandTree::parse(){
