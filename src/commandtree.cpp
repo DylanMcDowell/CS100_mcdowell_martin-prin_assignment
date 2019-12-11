@@ -101,10 +101,22 @@ CommandBase* CommandTree::buildLeaf(int beg, int end){
 			std::cout << "<" << std::endl;
 		}
 		else if(parsed.at(j) == ">"){
-			std::cout << ">" << std::endl;
+			if (j+1 <= end) {
+				CommandBase* c = new Command(cmd);
+				return new OutputOverride(c, parsed.at(j+1));
+			}
+			else{
+				return nullptr;
+			}
 		}
 		else if(parsed.at(j) == ">>"){
-			std::cout << ">>" << std::endl;
+			if (j+1 <= end) {
+                                CommandBase* c = new Command(cmd);
+                                return new OutputAdd(c, parsed.at(j+1));
+                        }
+                        else{
+                                return nullptr;
+                        }
 		}
                 cmd.push_back(parsed.at(j));
         }
