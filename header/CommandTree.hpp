@@ -10,6 +10,8 @@
 #include "SemiColon.hpp"
 #include "Parser.hpp"
 #include "Test.hpp"
+#include "Pipe.hpp"
+
 
 class CommandTree{
       private:

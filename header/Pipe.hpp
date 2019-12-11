@@ -19,20 +19,20 @@ class Pipe : public Connector
 		int dupout = dup(1);
 		close(1);
 		dup(pipeFD[1]);
-		l->execute();
+		left->execute();
 		close(1);
 		dup(dupout);
 
 		int dupin = dup(0);
 		close(0);
 		dup(pipeFD[0]);
-		r->execute();
+		right->execute();
 		close(0);
 		dup(dupin);
 
 		close(pipeFD[1]);
 		close(pipeFD[2]);
 	}
-}
+};
 
 #endif //_PIPE_HPP_

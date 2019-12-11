@@ -60,6 +60,9 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 		return nullptr;
 	}
 
+	left = nullptr;
+	right = nullptr;
+
 	//END COMPOSITE BLOCK//
 
 	//**LEAF BLOCK**//
@@ -79,7 +82,7 @@ CommandBase* CommandTree::buildRec(int beg, int end){
                                 return nullptr;
                         }
 			//Return a pipe
-                        return nullptr ;
+                        return new Pipe(left, right);
 		}
         }
 
