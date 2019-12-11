@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib>
 #include <string>
+#include <unistd.h>
 
 #include "ExecuteDecorator.hpp"
 
@@ -24,7 +25,7 @@ class OuputAdd : public ExecuteDecorator
 
 		virtual int execute()
 		{
-			int new_out = open(file, O_WRONLY);
+			int new_out = open(file, O_WRONLY | O_CREAT | O_APPEND);
 			int dupout = dup(1);
 			close(1);
 			dup(new_out);
