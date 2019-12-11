@@ -70,27 +70,36 @@ CommandBase* CommandTree::buildRec(int beg, int end){
 	if(parsed.at(beg) == "(" && parsed.at(end) == ")"){
 		return this->buildRec(beg+1, end-1);
 	}
-
-	vector<string> cmd;
-	for(int j = beg; j <= end; j++){
-		cmd.push_back(parsed.at(j));
-	}
-
-
-	if(cmd.at(0) == "exit"){
-		return new Exit();
-	}
-	else if(cmd.at(0) == "test" || cmd.at(0) == "["){
-		for(int j = 1; j < cmd.size(); j++){
-			cmd.at(j-1) = cmd.at(j);
-		}
-		return new ShellTest(cmd);
-	}
 	else{
-		return new Command(cmd);
+		return this->buildLeaf(beg, end);
+
 	}
 
 	//END LEAF BLOCK//
+}
+
+
+CommandBase* CommandTree::buildLeaf(int beg, int end){
+
+
+	vector<string> cmd;
+        for(int j = beg; j <= end; j++){
+                cmd.push_back(parsed.at(j));
+        }
+
+
+        if(cmd.at(0) == "exit"){
+                return new Exit();
+        }
+        else if(cmd.at(0) == "test" || cmd.at(0) == "["){
+                for(int j = 1; j < cmd.size(); j++){
+                        cmd.at(j-1) = cmd.at(j);
+                }
+                return new ShellTest(cmd);
+        }
+        else{
+                return new Command(cmd);
+        }
 }
 
 void CommandTree::parse(){

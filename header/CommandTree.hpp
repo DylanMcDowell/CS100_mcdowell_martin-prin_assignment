@@ -24,6 +24,8 @@ class CommandTree{
 	 * finds a connector */ 
 	CommandBase* buildRec(int, int);
 
+	CommandBase* buildLeaf(int, int);
+
 	//Calls the CommandParse class and it's parse function, then sets parsed equal to the result;
 	void parse();
       public:
