@@ -11,7 +11,9 @@
 #include "Parser.hpp"
 #include "Test.hpp"
 #include "Pipe.hpp"
-
+#include "ExecuteDecorator.hpp"
+#include "OutputAdd.hpp"
+#include "OutputOverride.hpp"
 
 class CommandTree{
       private:

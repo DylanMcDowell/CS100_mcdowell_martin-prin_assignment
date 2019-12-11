@@ -10,13 +10,9 @@ using namespace std;
 
 class ExecuteDecorator : public CommandBase
 {
-	private:
-		CommandBase* cmd;
-
 	public:
 		/* Constructor */
 		ExecuteDecorator() {};
-		ExecuteDecorator(CommandBase* cmd_) { this->cmd = cmd_; };
 
 		virtual int execute() = 0;	
 };
