@@ -13,7 +13,7 @@ To proceed, we will use a parse tree by associating a priority to each connector
 
 ## OMT diagram
 
-<img src="images/OMT Diagram.png" with="1000">
+<img src="images/OMT Diagram 2.png" with="1000">
 
 ## Class Description
 
@@ -40,6 +40,7 @@ This is the class for the connector. This class will recognize each connector an
 * **SemiColon**: The SemiColon class overrides the execute() function by running the leftmost CommandBase's execute(), then the rightmost's. It returns it's leftmost execute() result.
 * **Ampersand**: The Ampersand class overrides the execute() function by running the rightmost's execute() only if the leftmost one's succeeds.
 * **OrBars**: The OrBars class overrides the execute() function by running the rightmost's execute() only if the leftmost one's fails.
+* **Pipe**: The Pipe class overrides the execute() function in order to implement the pipe function in our shell. It executes the leftmost function and outputs it as input for the rightmost function.
 
 Each of these functions' execute() returns a zero if ether it's left or right CommandBase succeeds.
 
@@ -49,7 +50,7 @@ This function is the exit case, it only calls the execute function and exit the 
 
 **ShellTest**
 
-
+The Shell Test implements the test command that can be used from the shell. This command checks if the file exists.
 
 **CommandTree**
 
@@ -57,7 +58,15 @@ This class is the base for the parsing tree. After the parsing, we will use this
 
 **Parser**
 
-This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell. Also, quotations, parentheses, and semicolons are all automatically given their own cell, and the hash symbol (#) will act as comments 
+This class will parse the command in order to create a parsing tree. Using the parse member function, CommandParse will output the command prompt, take the input, then pass back a vector of strings, with each word in it's own cell. Also, quotations, parentheses, and semicolons are all automatically given their own cell, and the hash symbol (#) will act as comments.
+
+**ExecuteDecorator**
+
+This class is an interface for the decorator we are using to implement the input and output function for the shell commands. It contains 3 decorators:
+
+* **Input**: This is the decorator for the input. It overrides the execute() function and add an input to the command in the shell.
+* **OutputOverride**: This is one of the 2 decorators for the output. This one is called by using '>'. It overrides the execute() function and write the output of the command in a file by overriding the file.
+* **OutputAdd**: This the other decorator for the output. This one is called by using '>>'. It overrides the execute() function and write the output in a file but does not override, it just simply add the output to the file.
 
 ## Prototyping and Research
 
