@@ -14,6 +14,7 @@
 #include "ExecuteDecorator.hpp"
 #include "OutputAdd.hpp"
 #include "OutputOverride.hpp"
+#include "Input.hpp"
 
 class CommandTree{
       private:

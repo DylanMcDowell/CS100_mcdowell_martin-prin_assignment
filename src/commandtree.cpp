@@ -98,7 +98,13 @@ CommandBase* CommandTree::buildLeaf(int beg, int end){
 	vector<string> cmd;
         for(int j = beg; j <= end; j++){
 		if(parsed.at(j) == "<"){
-			std::cout << "<" << std::endl;
+			if (j+1 <= end) {
+                                CommandBase* c = new Command(cmd);
+                                return new Input(c, parsed.at(j+1));
+                        }
+                        else{
+                                return nullptr;
+                        }
 		}
 		else if(parsed.at(j) == ">"){
 			if (j+1 <= end) {
