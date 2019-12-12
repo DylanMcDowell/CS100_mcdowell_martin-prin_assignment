@@ -26,7 +26,7 @@ class OutputOverride : public ExecuteDecorator
 
 		virtual int execute()
 		{
-			int new_out = open(file.c_str(), O_WRONLY | O_CREAT);
+			int new_out = open(file.c_str(), O_RDWR | O_CREAT);
 			int dupout = dup(1);
 			close(1);
 			dup(new_out);
