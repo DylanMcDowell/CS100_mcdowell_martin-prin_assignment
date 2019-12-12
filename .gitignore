@@ -13,3 +13,6 @@ dup_input_test
 
 test
 rshell
+
+outtest.txt
+outtest2.txt

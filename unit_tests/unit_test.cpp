@@ -9,6 +9,8 @@
 #include "commandtree_test.hpp"
 #include "test_test.hpp"
 #include "input_test.hpp"
+#include "output_add_test.hpp"
+#include "output_override_test.hpp"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
