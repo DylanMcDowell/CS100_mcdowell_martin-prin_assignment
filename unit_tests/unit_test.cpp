@@ -11,6 +11,7 @@
 #include "input_test.hpp"
 #include "output_add_test.hpp"
 #include "output_override_test.hpp"
+#include "pipe_test.hpp"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
